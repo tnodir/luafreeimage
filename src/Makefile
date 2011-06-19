@@ -4,7 +4,7 @@ PLAT= generic
 LUA= /tmp/lua-5.1.4
 FREEIMAGE= /tmp/FreeImage
 
-T= /usr/local/lib/lua/5.1/freeimage.so
+T= freeimage.so
 A= $(LUA)/src/libluafreeimage.a
 
 COPT= -O2 -fPIC -DNDEBUG
