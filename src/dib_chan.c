@@ -25,12 +25,12 @@ dib_getChannel (lua_State *L)
 static int
 dib_setChannel (lua_State *L)
 {
-    FIBITMAP *dib = lua_unboxpointer(L, 1, DIB_TYPENAME);
-    FIBITMAP *dib8 = lua_unboxpointer(L, 2, DIB_TYPENAME);
+    FIBITMAP *dst = lua_unboxpointer(L, 1, DIB_TYPENAME);
+    FIBITMAP *src = lua_unboxpointer(L, 2, DIB_TYPENAME);
     FREE_IMAGE_COLOR_CHANNEL channel = lfi_getchannel(L, 3);
 
     return dib_checkerror(L,
-     FreeImage_SetChannel(dib, dib8, channel) ? dib : NULL);
+     FreeImage_SetChannel(dst, src, channel) ? dst : NULL);
 }
 
 

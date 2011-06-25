@@ -3,6 +3,19 @@
 
 /*
  * Arguments: dib_udata
+ * Returns: boolean
+ */
+static int
+dib_hasPixels (lua_State *L)
+{
+    FIBITMAP *dib = lua_unboxpointer(L, 1, DIB_TYPENAME);
+
+    lua_pushboolean(L, FreeImage_HasPixels(dib));
+    return 1;
+}
+
+/*
+ * Arguments: dib_udata
  * Returns: image_type (string)
  */
 static int
@@ -347,8 +360,38 @@ dib_setBackgroundColor (lua_State *L)
      FreeImage_SetBackgroundColor(dib, colp) ? dib : NULL);
 }
 
+/*
+ * Arguments: dest. dib_udata, source dib_udata
+ * Returns: [dest. dib_udata]
+ */
+static int
+dib_getThumbnail (lua_State *L)
+{
+    FIBITMAP **dibp = checkudata(L, 1, DIB_TYPENAME);
+    FIBITMAP *dib = lua_unboxpointer(L, 2, DIB_TYPENAME);
+
+    *dibp = FreeImage_GetThumbnail(dib);
+    return dib_checkerror(L, *dibp);
+}
+
+/*
+ * Arguments: dib_udata, [thumbnail (dib_udata)]
+ * Returns: [dib_udata]
+ */
+static int
+dib_setThumbnail (lua_State *L)
+{
+    FIBITMAP *dib = lua_unboxpointer(L, 1, DIB_TYPENAME);
+    FIBITMAP *thumbnail = lua_isuserdata(L, 2)
+     ? lua_unboxpointer(L, 2, DIB_TYPENAME) : NULL;
+
+    return dib_checkerror(L,
+     FreeImage_SetThumbnail(dib, thumbnail) ? dib : NULL);
+}
+
 
 #define DIB_INFO_METHODS \
+    {"hasPixels",		dib_hasPixels}, \
     {"getImageType",		dib_getImageType}, \
     {"getColorsUsed",		dib_getColorsUsed}, \
     {"getBPP",			dib_getBPP}, \
@@ -372,4 +415,6 @@ dib_setBackgroundColor (lua_State *L)
     {"getTransparentIndex",	dib_getTransparentIndex}, \
     {"hasBackgroundColor",	dib_hasBackgroundColor}, \
     {"getBackgroundColor",	dib_getBackgroundColor}, \
-    {"setBackgroundColor",	dib_setBackgroundColor}
+    {"setBackgroundColor",	dib_setBackgroundColor}, \
+    {"getThumbnail",		dib_getThumbnail}, \
+    {"setThumbnail",		dib_setThumbnail}

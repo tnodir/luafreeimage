@@ -58,9 +58,21 @@ dib_convertTo32Bits (lua_State *L)
 }
 
 static int
+dib_convertToFloat (lua_State *L)
+{
+    return dib_convert(L, FreeImage_ConvertToFloat);
+}
+
+static int
 dib_convertToRGBF (lua_State *L)
 {
     return dib_convert(L, FreeImage_ConvertToRGBF);
+}
+
+static int
+dib_convertToUINT16 (lua_State *L)
+{
+    return dib_convert(L, FreeImage_ConvertToUINT16);
 }
 
 /*
@@ -158,7 +170,9 @@ dib_convertToType (lua_State *L)
     {"convertTo16Bits565",	dib_convertTo16Bits565}, \
     {"convertTo24Bits",		dib_convertTo24Bits}, \
     {"convertTo32Bits",		dib_convertTo32Bits}, \
+    {"convertToFloat",		dib_convertToFloat}, \
     {"convertToRGBF",		dib_convertToRGBF}, \
+    {"convertToUINT16",		dib_convertToUINT16}, \
     {"colorQuantize",		dib_colorQuantize}, \
     {"threshold",		dib_threshold}, \
     {"dither",			dib_dither}, \
