@@ -276,6 +276,7 @@ dib_getformatflags (lua_State *L, int idx)
 #ifdef FIF_RAW
 	RAW_PREVIEW,
 	RAW_DISPLAY,
+	RAW_HALFSIZE,
 #endif
 	0
     };
@@ -402,6 +403,7 @@ dib_getformatflags (lua_State *L, int idx)
 #ifdef FIF_RAW
 	"raw_preview",
 	"raw_display",
+	"raw_halfsize",
 #endif
 	"default", NULL
     };

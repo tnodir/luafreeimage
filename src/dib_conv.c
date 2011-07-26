@@ -75,6 +75,12 @@ dib_convertToUINT16 (lua_State *L)
     return dib_convert(L, FreeImage_ConvertToUINT16);
 }
 
+static int
+dib_convertToRGB16 (lua_State *L)
+{
+    return dib_convert(L, FreeImage_ConvertToRGB16);
+}
+
 /*
  * Arguments: dest. dib_udata, source dib_udata,
  *	quantize (string: "wu", "nn")
@@ -173,6 +179,7 @@ dib_convertToType (lua_State *L)
     {"convertToFloat",		dib_convertToFloat}, \
     {"convertToRGBF",		dib_convertToRGBF}, \
     {"convertToUINT16",		dib_convertToUINT16}, \
+    {"convertToRGB16",		dib_convertToRGB16}, \
     {"colorQuantize",		dib_colorQuantize}, \
     {"threshold",		dib_threshold}, \
     {"dither",			dib_dither}, \
