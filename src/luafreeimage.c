@@ -85,7 +85,7 @@ lfi_uninit (lua_State *L)
 #include "dib_chan.c"
 #include "dib_copy.c"
 
-static luaL_reg dib_meth[] = {
+static luaL_Reg dib_meth[] = {
     DIB_METHODS,
     DIB_INFO_METHODS,
     DIB_PIX_METHODS,
@@ -98,7 +98,7 @@ static luaL_reg dib_meth[] = {
     {NULL, NULL}
 };
 
-static luaL_reg filib[] = {
+static luaL_Reg filib[] = {
     {"getInfo",		lfi_getInfo},
     {"getFileType",	lfi_getFileType},
     {"getColor",	lfi_getColor},
