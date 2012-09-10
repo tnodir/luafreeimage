@@ -19,10 +19,10 @@
 #endif
 
 #define lua_boxpointer(L,u) \
-	(*(void **) (lua_newuserdata(L, sizeof(void *))) = (u))
+    (*(void **) (lua_newuserdata(L, sizeof(void *))) = (u))
 
 #define lua_unboxpointer(L,i,tname) \
-	(*(void **) (checkudata(L, i, tname)))
+    (*(void **) (checkudata(L, i, tname)))
 
 
 #endif

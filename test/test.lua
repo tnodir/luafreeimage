@@ -18,10 +18,10 @@ print("colorsUsed", dib:getColorsUsed())
 
 print"-- Make Thumbnail"
 do
-	local thumb = fi.bitmap()
-	assert(thumb:makeThumbnail(dib, 128))
-	assert(thumb:save("jpeg", "thumb.jpg"))
-	os.remove("thumb.jpg")
-	print("OK")
+  local thumb = fi.bitmap()
+  assert(thumb:makeThumbnail(dib, 128))
+  assert(thumb:save("jpeg", "thumb.jpg"))
+  os.remove("thumb.jpg")
+  print("OK")
 end
 

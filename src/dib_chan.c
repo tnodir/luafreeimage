@@ -9,12 +9,12 @@
 static int
 dib_getChannel (lua_State *L)
 {
-    FIBITMAP **dibp = checkudata(L, 1, DIB_TYPENAME);
-    FIBITMAP *dib = lua_unboxpointer(L, 2, DIB_TYPENAME);
-    FREE_IMAGE_COLOR_CHANNEL channel = lfi_getchannel(L, 3);
+  FIBITMAP **dibp = checkudata(L, 1, DIB_TYPENAME);
+  FIBITMAP *dib = lua_unboxpointer(L, 2, DIB_TYPENAME);
+  FREE_IMAGE_COLOR_CHANNEL channel = lfi_getchannel(L, 3);
 
-    *dibp = FreeImage_GetChannel(dib, channel);
-    return dib_checkerror(L, *dibp);
+  *dibp = FreeImage_GetChannel(dib, channel);
+  return dib_checkerror(L, *dibp);
 }
 
 /*
@@ -25,15 +25,15 @@ dib_getChannel (lua_State *L)
 static int
 dib_setChannel (lua_State *L)
 {
-    FIBITMAP *dst = lua_unboxpointer(L, 1, DIB_TYPENAME);
-    FIBITMAP *src = lua_unboxpointer(L, 2, DIB_TYPENAME);
-    FREE_IMAGE_COLOR_CHANNEL channel = lfi_getchannel(L, 3);
+  FIBITMAP *dst = lua_unboxpointer(L, 1, DIB_TYPENAME);
+  FIBITMAP *src = lua_unboxpointer(L, 2, DIB_TYPENAME);
+  FREE_IMAGE_COLOR_CHANNEL channel = lfi_getchannel(L, 3);
 
-    return dib_checkerror(L,
-     FreeImage_SetChannel(dst, src, channel) ? dst : NULL);
+  return dib_checkerror(L,
+   FreeImage_SetChannel(dst, src, channel) ? dst : NULL);
 }
 
 
 #define DIB_CHAN_METHODS \
-    {"getChannel",		dib_getChannel}, \
-    {"setChannel",		dib_setChannel}
+  {"getChannel",		dib_getChannel}, \
+  {"setChannel",		dib_setChannel}
