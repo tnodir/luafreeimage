@@ -5,7 +5,7 @@ LUA= /tmp/lua-5.1.4
 FREEIMAGE= /tmp/FreeImage
 
 T= freeimage.so
-A= $(LUA)/src/libluafreeimage.a
+A= libluafreeimage.a
 
 COPT= -O2 -fPIC -DNDEBUG
 CWARNS = -W -Wall -Wextra -pedantic \
@@ -72,7 +72,7 @@ osx:
 	MYLDFLAGS="-bundle -undefined dynamic_lookup /usr/lib/bundle1.o"
 
 clean:
-	$(RM) $(A) $(T) *.o
+	$(RM) $(A) $(T) $(LDOBJS)
 
 
 .PHONY: all $(PLATS) default a clean

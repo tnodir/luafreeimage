@@ -157,191 +157,415 @@ dib_getformatflags (lua_State *L, int idx)
 {
   static const FREE_IMAGE_FORMAT flag_values[] = {
     0,
-    FIF_LOAD_NOPIXELS,
     /* FIF_BMP */
+#ifdef BMP_SAVE_RLE
     BMP_SAVE_RLE,
+#endif
     /* FIF_ICO */
+    /* FIF_ICO */
+#ifdef ICO_MAKEALPHA
     ICO_MAKEALPHA,
+#endif
     /* FIF_JPEG */
+#ifdef JPEG_FAST
     JPEG_FAST,
+#endif
+#ifdef JPEG_ACCURATE
     JPEG_ACCURATE,
+#endif
+#ifdef JPEG_CMYK
     JPEG_CMYK,
+#endif
+#ifdef JPEG_EXIFROTATE
     JPEG_EXIFROTATE,
+#endif
+#ifdef JPEG_GREYSCALE
     JPEG_GREYSCALE,
+#endif
+#ifdef JPEG_QUALITYSUPERB
     JPEG_QUALITYSUPERB,
+#endif
+#ifdef JPEG_QUALITYGOOD
     JPEG_QUALITYGOOD,
+#endif
+#ifdef JPEG_QUALITYNORMAL
     JPEG_QUALITYNORMAL,
+#endif
+#ifdef JPEG_QUALITYAVERAGE
     JPEG_QUALITYAVERAGE,
+#endif
+#ifdef JPEG_QUALITYBAD
     JPEG_QUALITYBAD,
+#endif
+#ifdef JPEG_PROGRESSIVE
     JPEG_PROGRESSIVE,
+#endif
+#ifdef JPEG_SUBSAMPLING_411
     JPEG_SUBSAMPLING_411,
+#endif
+#ifdef JPEG_SUBSAMPLING_420
     JPEG_SUBSAMPLING_420,
+#endif
+#ifdef JPEG_SUBSAMPLING_422
     JPEG_SUBSAMPLING_422,
+#endif
+#ifdef JPEG_SUBSAMPLING_444
     JPEG_SUBSAMPLING_444,
+#endif
+#ifdef JPEG_OPTIMIZE
     JPEG_OPTIMIZE,
+#endif
+#ifdef JPEG_BASELINE
     JPEG_BASELINE,
+#endif
     /* FIF_JNG */
     /* FIF_KOALA */
     /* FIF_LBM */
     /* FIF_IFF */
     /* FIF_MNG */
     /* FIF_PBM, FIF_PGM, FIF_PPM */
+#ifdef PNM_SAVE_RAW
     PNM_SAVE_RAW,
+#endif
+#ifdef PNM_SAVE_ASCII
     PNM_SAVE_ASCII,
+#endif
     /* FIF_PBMRAW */
     /* FIF_PCD */
+#ifdef PCD_BASE
     PCD_BASE,
+#endif
+#ifdef PCD_BASEDIV4
     PCD_BASEDIV4,
+#endif
+#ifdef PCD_BASEDIV4
     PCD_BASEDIV16,
+#endif
     /* FIF_PCX */
     /* FIF_PGMRAW */
     /* FIF_PNG */
+#ifdef PNG_IGNOREGAMMA
     PNG_IGNOREGAMMA,
+#endif
+#ifdef PNG_Z_BEST_SPEED
     PNG_Z_BEST_SPEED,
+#endif
+#ifdef PNG_Z_DEFAULT_COMPRESSION
     PNG_Z_DEFAULT_COMPRESSION,
+#endif
+#ifdef PNG_Z_BEST_COMPRESSION
     PNG_Z_BEST_COMPRESSION,
+#endif
+#ifdef PNG_Z_NO_COMPRESSION
     PNG_Z_NO_COMPRESSION,
+#endif
+#ifdef PNG_INTERLACED
     PNG_INTERLACED,
+#endif
     /* FIF_PPMRAW */
     /* FIF_RAS */
     /* FIF_TARGA */
+#ifdef TARGA_LOAD_RGB888
     TARGA_LOAD_RGB888,
+#endif
+#ifdef TARGA_SAVE_RLE
     TARGA_SAVE_RLE,
+#endif
     /* FIF_TIFF */
+#ifdef TIFF_CMYK
     TIFF_CMYK,
+#endif
+#ifdef TIFF_PACKBITS
     TIFF_PACKBITS,
+#endif
+#ifdef TIFF_DEFLATE
     TIFF_DEFLATE,
+#endif
+#ifdef TIFF_ADOBE_DEFLATE
     TIFF_ADOBE_DEFLATE,
+#endif
+#ifdef TIFF_NONE
     TIFF_NONE,
+#endif
+#ifdef TIFF_CCITTFAX3
     TIFF_CCITTFAX3,
+#endif
+#ifdef TIFF_CCITTFAX4
     TIFF_CCITTFAX4,
+#endif
+#ifdef TIFF_LZW
     TIFF_LZW,
+#endif
+#ifdef TIFF_JPEG
     TIFF_JPEG,
+#endif
+#ifdef TIFF_LOGLUV
     TIFF_LOGLUV,
+#endif
     /* FIF_WBMP */
     /* FIF_PSD */
+#ifdef PSD_CMYK
     PSD_CMYK,
+#endif
+#ifdef PSD_LAB
     PSD_LAB,
+#endif
     /* FIF_CUT */
     /* FIF_XBM */
     /* FIF_XPM */
     /* FIF_DDS */
     /* FIF_GIF */
+#ifdef GIF_LOAD256
     GIF_LOAD256,
+#endif
+#ifdef GIF_PLAYBACK
     GIF_PLAYBACK,
+#endif
     /* FIF_HDR */
     /* FIF_FAXG3 */
     /* FIF_SGI */
     /* FIF_EXR */
+#ifdef EXR_FLOAT
     EXR_FLOAT,
+#endif
+#ifdef EXR_NONE
     EXR_NONE,
+#endif
+#ifdef EXR_ZIP
     EXR_ZIP,
+#endif
+#ifdef EXR_PIZ
     EXR_PIZ,
+#endif
+#ifdef EXR_PXR24
     EXR_PXR24,
+#endif
+#ifdef EXR_B44
     EXR_B44,
+#endif
+#ifdef EXR_LC
     EXR_LC,
+#endif
     /* FIF_J2K */
     /* FIF_JP2 */
     /* FIF_PFM */
     /* FIF_PICT */
     /* FIF_RAW */
+#ifdef RAW_PREVIEW
     RAW_PREVIEW,
+#endif
+#ifdef RAW_DISPLAY
     RAW_DISPLAY,
-    RAW_HALFSIZE
+#endif
+#ifdef RAW_HALFSIZE
+    RAW_HALFSIZE,
+#endif
+    FIF_LOAD_NOPIXELS
   };
   static const char *const flag_names[] = {
     "default",
-    "load_nopixels",
     /* FIF_BMP */
+#ifdef BMP_SAVE_RLE
     "bmp_save_rle",
-    /* FIF_ICO */
+#endif
+#ifdef ICO_MAKEALPHA
     "ico_makealpha",
+#endif
     /* FIF_JPEG */
+#ifdef JPEG_FAST
     "jpeg_fast",
+#endif
+#ifdef JPEG_ACCURATE
     "jpeg_accurate",
+#endif
+#ifdef JPEG_CMYK
     "jpeg_cmyk",
+#endif
+#ifdef JPEG_EXIFROTATE
     "jpeg_exifrotate",
+#endif
+#ifdef JPEG_GREYSCALE
     "jpeg_greyscale",
+#endif
+#ifdef JPEG_QUALITYSUPERB
     "jpeg_qualitysuperb",
+#endif
+#ifdef JPEG_QUALITYGOOD
     "jpeg_qualitygood",
+#endif
+#ifdef JPEG_QUALITYNORMAL
     "jpeg_qualitynormal",
+#endif
+#ifdef JPEG_QUALITYAVERAGE
     "jpeg_qualityaverage",
+#endif
+#ifdef JPEG_QUALITYBAD
     "jpeg_qualitybad",
+#endif
+#ifdef JPEG_PROGRESSIVE
     "jpeg_progressive",
+#endif
+#ifdef JPEG_SUBSAMPLING_411
     "jpeg_subsampling_411",
+#endif
+#ifdef JPEG_SUBSAMPLING_420
     "jpeg_subsampling_420",
+#endif
+#ifdef JPEG_SUBSAMPLING_422
     "jpeg_subsampling_422",
+#endif
+#ifdef JPEG_SUBSAMPLING_444
     "jpeg_subsampling_444",
+#endif
+#ifdef JPEG_OPTIMIZE
     "jpeg_optimize",
+#endif
+#ifdef JPEG_BASELINE
     "jpeg_baseline",
+#endif
     /* FIF_JNG */
     /* FIF_KOALA */
     /* FIF_LBM */
     /* FIF_IFF */
     /* FIF_MNG */
     /* FIF_PBM, FIF_PGM, FIF_PPM */
+#ifdef PNM_SAVE_RAW
     "pnm_save_raw",
+#endif
+#ifdef PNM_SAVE_ASCII
     "pnm_save_ascii",
+#endif
     /* FIF_PBMRAW */
     /* FIF_PCD */
+#ifdef PCD_BASE
     "pcd_base",
+#endif
+#ifdef PCD_BASEDIV4
     "pcd_basediv4",
+#endif
+#ifdef PCD_BASEDIV4
     "pcd_basediv16",
+#endif
     /* FIF_PCX */
     /* FIF_PGMRAW */
     /* FIF_PNG */
+#ifdef PNG_IGNOREGAMMA
     "png_ignoregamma",
+#endif
+#ifdef PNG_Z_BEST_SPEED
     "png_z_best_speed",
+#endif
+#ifdef PNG_Z_DEFAULT_COMPRESSION
     "png_z_default_compression",
+#endif
+#ifdef PNG_Z_BEST_COMPRESSION
     "png_z_best_compression",
+#endif
+#ifdef PNG_Z_NO_COMPRESSION
     "png_z_no_compression",
+#endif
+#ifdef PNG_INTERLACED
     "png_interlaced",
+#endif
     /* FIF_PPMRAW */
     /* FIF_RAS */
     /* FIF_TARGA */
+#ifdef TARGA_LOAD_RGB888
     "targa_load_rgb888",
+#endif
+#ifdef TARGA_SAVE_RLE
     "targa_save_rle",
+#endif
     /* FIF_TIFF */
+#ifdef TIFF_CMYK
     "tiff_cmyk",
+#endif
+#ifdef TIFF_PACKBITS
     "tiff_packbits",
+#endif
+#ifdef TIFF_DEFLATE
     "tiff_deflate",
+#endif
+#ifdef TIFF_ADOBE_DEFLATE
     "tiff_adobe_deflate",
+#endif
+#ifdef TIFF_NONE
     "tiff_none",
+#endif
+#ifdef TIFF_CCITTFAX3
     "tiff_ccittfax3",
+#endif
+#ifdef TIFF_CCITTFAX4
     "tiff_ccittfax4",
+#endif
+#ifdef TIFF_LZW
     "tiff_lzw",
+#endif
+#ifdef TIFF_JPEG
     "tiff_jpeg",
+#endif
+#ifdef TIFF_LOGLUV
     "tiff_logluv",
+#endif
     /* FIF_WBMP */
     /* FIF_PSD */
+#ifdef PSD_CMYK
     "psd_cmyk",
+#endif
+#ifdef PSD_LAB
     "psd_lab",
+#endif
     /* FIF_CUT */
     /* FIF_XBM */
     /* FIF_XPM */
     /* FIF_DDS */
     /* FIF_GIF */
+#ifdef GIF_LOAD256
     "gif_load256",
+#endif
+#ifdef GIF_PLAYBACK
     "gif_playback",
+#endif
     /* FIF_HDR */
     /* FIF_FAXG3 */
     /* FIF_SGI */
     /* FIF_EXR */
+#ifdef EXR_FLOAT
     "exr_float",
+#endif
+#ifdef EXR_NONE
     "exr_none",
+#endif
+#ifdef EXR_ZIP
     "exr_zip",
+#endif
+#ifdef EXR_PIZ
     "exr_piz",
+#endif
+#ifdef EXR_PXR24
     "exr_pxr24",
+#endif
+#ifdef EXR_B44
     "exr_b44",
+#endif
+#ifdef EXR_LC
     "exr_lc",
+#endif
     /* FIF_J2K */
     /* FIF_JP2 */
     /* FIF_PFM */
     /* FIF_PICT */
     /* FIF_RAW */
+#ifdef RAW_PREVIEW
     "raw_preview",
+#endif
+#ifdef RAW_DISPLAY
     "raw_display",
+#endif
+#ifdef RAW_HALFSIZE
     "raw_halfsize",
+#endif
+    "load_nopixels",
     NULL
   };
   const int top = lua_gettop(L);
