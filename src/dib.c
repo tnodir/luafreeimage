@@ -162,7 +162,6 @@ dib_getformatflags (lua_State *L, int idx)
     BMP_SAVE_RLE,
 #endif
     /* FIF_ICO */
-    /* FIF_ICO */
 #ifdef ICO_MAKEALPHA
     ICO_MAKEALPHA,
 #endif
@@ -368,6 +367,7 @@ dib_getformatflags (lua_State *L, int idx)
 #ifdef BMP_SAVE_RLE
     "bmp_save_rle",
 #endif
+    /* FIF_ICO */
 #ifdef ICO_MAKEALPHA
     "ico_makealpha",
 #endif
