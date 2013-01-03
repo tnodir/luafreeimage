@@ -172,7 +172,7 @@ lfi_tocolor (lua_State *L, int idx, RGBQUAD *col)
       memset(col, 0, sizeof(RGBQUAD));  /* transparent */
     }
     else if (*s == '#') {
-      BYTE rgba[4];
+      BYTE rgba[4] = {0};
       int i;
 
       for (i = 0; *(++s) && i < 8; ++i) {
